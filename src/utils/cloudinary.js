@@ -1,13 +1,20 @@
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs'
-    // Configuration
-    cloudinary.config({ 
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
-        api_key: process.env.CLOUDINARY_API_KEY, 
-        api_secret: process.env.CLOUDINARY_API_SECRET
-    });
+// Configuration
+console.log("CLOUDINARY CONFIG CHECK 👉", {
+    cloud: process.env.CLOUDINARY_CLOUD_NAME,
+    key: process.env.CLOUDINARY_API_KEY ? "OK" : "MISSING",
+    secret: process.env.CLOUDINARY_API_SECRET ? "OK" : "MISSING",
+});
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
-    const uploadOnCloudinary = async (localFilePath) => {
+
+
+const uploadOnCloudinary = async (localFilePath) => {
     try {
         if (!localFilePath) return null
         //upload the file on cloudinary
@@ -27,4 +34,4 @@ import fs from 'fs'
 
 
 
-export {uploadOnCloudinary}
+export { uploadOnCloudinary }
